@@ -52,9 +52,7 @@ class IntervalTrigger(BaseTrigger):
         elif self.start_date > now:
             next_fire_time = self.start_date
         else:
-            timediff_seconds = timedelta_seconds(now - self.start_date)
-            next_interval_num = int(ceil(timediff_seconds / self.interval_length))
-            next_fire_time = self.start_date + self.interval * next_interval_num
+            next_fire_time = now
 
         if not self.end_date or next_fire_time <= self.end_date:
             return self.timezone.normalize(next_fire_time)
